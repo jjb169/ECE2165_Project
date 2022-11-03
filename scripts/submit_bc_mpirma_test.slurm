@@ -5,8 +5,6 @@
 #SBATCH --time=8:00:00
 #SBATCH --job-name=bc_mpi
 #SBATCH --output=outputs/mpi-CA-GrQc-%j.txt
-#SBATCH --account=ageorge
-#SBATCH --mail-user=jdb193@pitt.edu
 #SBATCH --mail-type=BEGIN,END,FAIL
 
 # Navigate to correct directory
