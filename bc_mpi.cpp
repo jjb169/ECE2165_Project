@@ -13,6 +13,8 @@
 #include <unistd.h>
 #include <mpi.h>
 
+#include "wrapper.cpp"
+
 #define SAVE_RESULTS 0
 #define MAIN_PE 0
 
