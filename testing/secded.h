@@ -12,10 +12,11 @@
 //    4.1) this will turn the data into a byte array and tack on the check byte as well, just edits the codeWord input directly, no returns
 // 5) modify bit(s) within the byte array using "modifyBits(unsigned char codeWord[], int singleErrorChance, int doubleErrorChance)" or other function
 //    5.1) this function returns the number of bits modified (0, 1, or 2)
-// 6) use the function bool "checkReceivedData(unsigned char receivedData[])" by passing in the received unsigned char array
-//    6.1) this will correct data if possible, or flag a double bit error (any fixes made are applied directly to the receivedData array)
-//    6.2) "true" is returned if data corrected or no error found, "false" returned if double error detected - needs retransmitted
-//  7) might want to count what the error was and if it was fixed to display test data at the end, possible through return values of "modifyBits" and "checkReceivedData"
+// 6) transmit and receive data with MPI calls
+// 7) use the function bool "checkReceivedData(unsigned char receivedData[])" by passing in the received unsigned char array
+//    7.1) this will correct data if possible, or flag a double bit error (any fixes made are applied directly to the receivedData array)
+//    7.2) "true" is returned if data corrected or no error found, "false" returned if double error detected - needs retransmitted
+// 8) might want to count what the error was and if it was fixed to display test data at the end, possible through return values of "modifyBits" and "checkReceivedData"
 
 
 #define DEBUG 0
