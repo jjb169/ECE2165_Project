@@ -16,7 +16,9 @@
 // 7) use the function bool "checkReceivedData(unsigned char receivedData[])" by passing in the received unsigned char array
 //    7.1) this will correct data if possible, or flag a double bit error (any fixes made are applied directly to the receivedData array)
 //    7.2) "true" is returned if data corrected or no error found, "false" returned if double error detected - needs retransmitted
-// 8) might want to count what the error was and if it was fixed to display test data at the end, possible through return values of "modifyBits" and "checkReceivedData"
+// 8) turn data back into a double by using the "double charToDouble(unsigned char receivedData[])" method
+//    8.1) just pass in the corrected data from step 7, and it will return the data as a double
+// 9) might want to count what the error was and if it was fixed to display test data at the end, possible through return values of "modifyBits" and "checkReceivedData"
 
 
 #define DEBUG 0

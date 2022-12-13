@@ -119,6 +119,13 @@ int main(int argc, char **argv)
 		}
 	}
 	
+	//verifying taking data from char array of 9 back into a double
+	double backToDouble = charToDouble(transmit);
+	if(backToDouble != test)
+		printf("DATA TURNED BACK INTO DOUBLE DOES NOT MATCH INPUT DATA!\n\n");
+	else
+		printf("DATA BACK TO DOUBLE SUCCESSFULLY!\n\n");
+	
 	//done testing, output results
 	//print results
 	printf("Out of %d iterations:\n", iters);
