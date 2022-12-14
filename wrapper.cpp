@@ -76,13 +76,6 @@ namespace wrapper {
         total_ded = 0;
     }
 
-    // Combines the total_fault count from every node
-    void combine_faults() {
-        int local_faults = total_faults;
-        //MPI_Reduce(&local_faults, &local_faults, 1, MPI_INT, MPI_SUM, MAIN_PE, MPI_COMM_WORLD);
-        total_faults = local_faults;
-    }
-
     // Provides the Fault Injector runtime information
     void wrapper_output(int &faults, int &sec, int &ded, int &retrans) {
         faults = total_faults;

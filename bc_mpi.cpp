@@ -208,13 +208,17 @@ int main(int argc, char* argv[]) {
     double lambda = atof(argv[3]);
     string ifname = "./graphs/" + graphName + ".txt";
 
-    wrapper::wrapper_init(lambda, world_rank, world_size);
 
     // ==================== //
     //     Graph Loading    //
     // ==================== //
-    if (world_rank == MAIN_PE) {
+    if (world_rank == MAIN_PE)
         printf("----- FTMPI Version -----\n");
+
+    // Initialize wrapper RNG elements
+    wrapper::wrapper_init(lambda, world_rank, world_size);
+
+    if (world_rank == MAIN_PE) {
         printf("----- Loading graph -----\n");
         printf("File: %s\n", ifname.c_str());
     }
@@ -259,15 +263,24 @@ int main(int argc, char* argv[]) {
     double start, end;
     vector<double> bc;
     for (int i = 0; i < trials; i++) {
+        if (world_rank == MAIN_PE) printf("------- TRIAL %d -------\n", i);
+
+        // Reset the wrapper fault values
+        wrapper::wrapper_reset();
         MPI_Barrier(MPI_COMM_WORLD); // Ensure all nodes start at the same time
+
         start = MPI_Wtime();
         bc = determineBC(graph, N, data_start, data_end);
         end = MPI_Wtime();
-        wrapper::combine_faults();
+
+        int faults, local_faults, sec, ded, retrans;
+        // Get data from wrapper
+        wrapper::wrapper_output(local_faults, sec, ded, retrans);
+        // Combine total fault counts
+        MPI_Reduce(&local_faults, &faults, 1, MPI_INT, MPI_SUM, MAIN_PE, MPI_COMM_WORLD);
+
         if (world_rank == MAIN_PE) {
             printf("Trial %d, Time: %f\n", i, end - start);
-            int faults, sec, ded, retrans;
-            wrapper::wrapper_output(faults, sec, ded, retrans);
             printf("Faults: %d, SEC: %d, DED: %d, Retransmissions: %d\n", faults, sec, ded, retrans);
             // ==================== //
             //    Compare Results   //
@@ -348,6 +361,9 @@ int main(int argc, char* argv[]) {
     #if COMPARE_RESULTS
         infile.close();
     #endif
+
+    if (world_rank == MAIN_PE)
+        printf("-------------------------\n\n\n");
 
     MPI_Finalize();
     return 0;
