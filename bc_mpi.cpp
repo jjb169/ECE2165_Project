@@ -16,7 +16,10 @@
 #include "wrapper.cpp"
 
 #define SAVE_RESULTS 0
+#define COMPARE_RESULTS 1
 #define MAIN_PE 0
+
+#define COMP_TOLERANCE 0.000001
 
 using namespace std;
 
@@ -79,6 +82,7 @@ AdjList loadGraph(string filename, NodeTranslator &nodeList, int &N, int &E) {
 
     N = adjList.size();
     //cout << "count: " << count << " | N = " << N << endl;
+    infile.close();
     return adjList;
 }
 
@@ -193,16 +197,24 @@ int main(int argc, char* argv[]) {
     // ==================== //
     //     Cmd line args    //
     // ==================== //
-	// #Trials, *graphname*
-	// ./bc_hybrid 5 small_example
+	// #Trials, *graphname*, lambda
+	// ./bc_hybrid 5 small_example 0.001
+    if (argc != 4) {
+        printf("Incorrect arguments.\nExample: ./bc_mpi 5 small_example 0.001");
+        return 1;
+    }
     int trials = atoi(argv[1]);
     string graphName(argv[2]);
+    double lambda = atof(argv[3]);
     string ifname = "./graphs/" + graphName + ".txt";
+
+    wrapper::wrapper_init(lambda, world_rank, world_size);
 
     // ==================== //
     //     Graph Loading    //
     // ==================== //
     if (world_rank == MAIN_PE) {
+        printf("----- FTMPI Version -----\n");
         printf("----- Loading graph -----\n");
         printf("File: %s\n", ifname.c_str());
     }
@@ -217,7 +229,13 @@ int main(int argc, char* argv[]) {
         printf("Graph Load time: %f\n", load_end - load_start);
     }
     //printGraph(graph, N);
-
+    #if COMPARE_RESULTS
+        string sol_fname = "./graphs/" + graphName + "_solution" ".txt";
+        ifstream infile(sol_fname);
+        if (world_rank == MAIN_PE)
+            printf("Opening solution: %s\n", sol_fname.c_str());
+    #endif
+                
     // ==================== //
     //   Load Distribution  //
     // ==================== //
@@ -242,17 +260,54 @@ int main(int argc, char* argv[]) {
     vector<double> bc;
     for (int i = 0; i < trials; i++) {
         MPI_Barrier(MPI_COMM_WORLD); // Ensure all nodes start at the same time
-        if (world_rank == MAIN_PE) {
-            printf("Trial %d, ", i);
-            start = MPI_Wtime();
-        }
+        start = MPI_Wtime();
         bc = determineBC(graph, N, data_start, data_end);
+        end = MPI_Wtime();
         if (world_rank == MAIN_PE) {
-            end = MPI_Wtime();
-            printf("Time: %f\n", end - start);
+            printf("Trial %d, Time: %f\n", i, end - start);
+            // ==================== //
+            //    Compare Results   //
+            // ==================== //
+            #if COMPARE_RESULTS
+                string line;
+
+                // Reorder nodes to match solution
+                vector<int> nodesOrdered(N,0);
+                for (auto i : nodeList)
+                    nodesOrdered[i.second] = i.first;
+
+                int error_count = 0;
+                double total_diff = 0;
+                int i = 0;
+                // Get each node's BC
+                while(getline(infile, line)) {
+                    // Skip commented and non-digit lines
+                    if (ispunct(line.front()) || !isdigit(line.front()))
+                        continue;
+
+                    stringstream ss(line);
+                    int node;
+                    string buf;
+                    double bc_val;
+                    ss >> node >> buf >> bc_val;
+                    //printf("Node: %d, Betweenness: %f\n", node, bc_val);
+                    if (node != nodesOrdered[i]) {
+                        printf("Nodes in solution do not match current bc vector\n");
+                        break;
+                    } else if (abs(bc[i] - bc_val) >= COMP_TOLERANCE) {
+                        error_count++;
+                        total_diff += abs(bc[i] - bc_val);
+                        //printf("Erorr %d found: %f != %f\n", error_count, bc[i], bc_val);
+                    }
+                    i++;
+                }
+                printf("Total errors: %d, Avg diff: %f\n", error_count, (total_diff / error_count));
+            #endif
         }
     }
     //printArray(bc, N);
+
+    
 
     // ==================== //
     //     Save Results     //
@@ -282,6 +337,10 @@ int main(int argc, char* argv[]) {
             save_end = MPI_Wtime();
             printf("Save time: %f\n", save_end - save_start);
         }
+    #endif
+
+    #if COMPARE_RESULTS
+        infile.close();
     #endif
 
     MPI_Finalize();

@@ -8,6 +8,7 @@
 #include "secded.h"
 
 #define MAIN_PE 0
+#define PRINT_OUT 0
 
 using namespace std;
 
@@ -111,7 +112,7 @@ namespace wrapper {
                     for (int bit_idx=0; bit_idx < 8; bit_idx++) {
                         if (check_fault()) {
                             it[b] ^= (0x1<<bit_idx);
-                            printf("FAULT! Node %d, Call %d, Chunk %d, Byte %d, Bit %d\n", world_rank, call_num, i, b, bit_idx);
+                            if (PRINT_OUT == 1) printf("FAULT! Node %d, Call %d, Chunk %d, Byte %d, Bit %d\n", world_rank, call_num, i, b, bit_idx);
                         }
                     }
                 }
@@ -148,7 +149,7 @@ namespace wrapper {
         vector<int> valid(count, 0);
         int passed = 0; // 0 means request retransmission
         do {
-            printf("MPI Call: From %d to %d Call %d\n", source, world_rank, call_num);
+            if (PRINT_OUT == 1) printf("MPI Call: From %d to %d Call %d\n", source, world_rank, call_num);
             call_num++;
 
             // Set passed to 1 then check for errors
@@ -167,7 +168,7 @@ namespace wrapper {
                         buf[i] = charToDouble(it);
                         valid[i] = 1;
                     } else {
-                        printf("Uncorrectable error from Node %d, Chunk %d\n", source, i);
+                        if (PRINT_OUT == 1) printf("Uncorrectable error from Node %d, Chunk %d\n", source, i);
                         buf[i] = 0;
                         passed = 0; // retransmission needed
                     }
