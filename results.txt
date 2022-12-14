@@ -1,0 +1,851 @@
+<><><> 1e-6 Error Rate <><><>
+----- FTMPI Version -----
+Wrapper initialized with lambda = 0.000001
+----- Loading graph -----
+File: ./graphs/CA-GrQc.txt
+N = 5242, E=28980
+Graph Load time: 0.015476
+Opening solution: ./graphs/CA-GrQc_solution.txt
+
+----- BC Results -----
+Nodes = 2
+------- TRIAL 0 -------
+Min = 0, Max = 0.074054, Trial 0, Time: 5.591415
+Faults: 0, SEC: 0, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 1 -------
+Min = 0, Max = 0.074054, Trial 1, Time: 5.576915
+Faults: 0, SEC: 0, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 2 -------
+Min = 0, Max = 0.074054, Trial 2, Time: 5.570457
+Faults: 1, SEC: 1, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 3 -------
+Min = 0, Max = 0.074054, Trial 3, Time: 5.576845
+Faults: 1, SEC: 1, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 4 -------
+Min = 0, Max = 0.074054, Trial 4, Time: 5.578949
+Faults: 0, SEC: 0, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+-------------------------
+
+
+----- FTMPI Version -----
+Wrapper initialized with lambda = 0.000001
+----- Loading graph -----
+File: ./graphs/CA-GrQc.txt
+N = 5242, E=28980
+Graph Load time: 0.015016
+Opening solution: ./graphs/CA-GrQc_solution.txt
+
+----- BC Results -----
+Nodes = 4
+------- TRIAL 0 -------
+Min = 0, Max = 0.074054, Trial 0, Time: 2.840927
+Faults: 2, SEC: 2, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 1 -------
+Min = 0, Max = 0.074054, Trial 1, Time: 2.838722
+Faults: 2, SEC: 2, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 2 -------
+Min = 0, Max = 0.074054, Trial 2, Time: 2.833195
+Faults: 1, SEC: 1, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 3 -------
+Min = 0, Max = 0.074054, Trial 3, Time: 2.834556
+Faults: 2, SEC: 2, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 4 -------
+Min = 0, Max = 0.074054, Trial 4, Time: 2.835860
+Faults: 1, SEC: 1, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+-------------------------
+
+
+----- FTMPI Version -----
+Wrapper initialized with lambda = 0.000001
+----- Loading graph -----
+File: ./graphs/CA-GrQc.txt
+N = 5242, E=28980
+Graph Load time: 0.015015
+Opening solution: ./graphs/CA-GrQc_solution.txt
+
+----- BC Results -----
+Nodes = 8
+------- TRIAL 0 -------
+Min = 0, Max = 0.074054, Trial 0, Time: 1.447510
+Faults: 1, SEC: 1, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 1 -------
+Min = 0, Max = 0.074054, Trial 1, Time: 1.448181
+Faults: 4, SEC: 4, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 2 -------
+Min = 0, Max = 0.074054, Trial 2, Time: 1.449810
+Faults: 2, SEC: 2, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 3 -------
+Min = 0, Max = 0.074054, Trial 3, Time: 1.443957
+Faults: 3, SEC: 3, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 4 -------
+Min = 0, Max = 0.074054, Trial 4, Time: 1.444745
+Faults: 2, SEC: 2, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+-------------------------
+
+
+----- FTMPI Version -----
+Wrapper initialized with lambda = 0.000001
+----- Loading graph -----
+File: ./graphs/CA-GrQc.txt
+N = 5242, E=28980
+Graph Load time: 0.015290
+Opening solution: ./graphs/CA-GrQc_solution.txt
+
+----- BC Results -----
+Nodes = 16
+------- TRIAL 0 -------
+Min = 0, Max = 0.074054, Trial 0, Time: 0.770181
+Faults: 3, SEC: 3, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 1 -------
+Min = 0, Max = 0.074054, Trial 1, Time: 0.762561
+Faults: 4, SEC: 4, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 2 -------
+Min = 0, Max = 0.074054, Trial 2, Time: 0.761242
+Faults: 8, SEC: 8, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 3 -------
+Min = 0, Max = 0.074054, Trial 3, Time: 0.759997
+Faults: 7, SEC: 7, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 4 -------
+Min = 0, Max = 0.074054, Trial 4, Time: 0.764763
+Faults: 5, SEC: 5, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+-------------------------
+
+
+----- FTMPI Version -----
+Wrapper initialized with lambda = 0.000001
+----- Loading graph -----
+File: ./graphs/CA-GrQc.txt
+N = 5242, E=28980
+Graph Load time: 0.015703
+Opening solution: ./graphs/CA-GrQc_solution.txt
+
+----- BC Results -----
+Nodes = 32
+------- TRIAL 0 -------
+Min = 0, Max = 0.074054, Trial 0, Time: 0.479073
+Faults: 14, SEC: 14, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 1 -------
+Min = 0, Max = 0.074054, Trial 1, Time: 0.451600
+Faults: 15, SEC: 15, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 2 -------
+Min = 0, Max = 0.074054, Trial 2, Time: 0.440897
+Faults: 7, SEC: 7, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 3 -------
+Min = 0, Max = 0.074054, Trial 3, Time: 0.441879
+Faults: 18, SEC: 18, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 4 -------
+Min = 0, Max = 0.074054, Trial 4, Time: 0.441928
+Faults: 11, SEC: 11, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+-------------------------
+
+
+<><><> 1e-5 Error Rate <><><>
+----- FTMPI Version -----
+Wrapper initialized with lambda = 0.000010
+----- Loading graph -----
+File: ./graphs/CA-GrQc.txt
+N = 5242, E=28980
+Graph Load time: 0.015142
+Opening solution: ./graphs/CA-GrQc_solution.txt
+
+----- BC Results -----
+Nodes = 2
+------- TRIAL 0 -------
+Min = 0, Max = 0.074054, Trial 0, Time: 5.608819
+Faults: 5, SEC: 5, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 1 -------
+Min = 0, Max = 0.074054, Trial 1, Time: 5.589266
+Faults: 2, SEC: 2, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 2 -------
+Min = 0, Max = 0.074054, Trial 2, Time: 5.585097
+Faults: 7, SEC: 7, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 3 -------
+Min = 0, Max = 0.074054, Trial 3, Time: 5.588988
+Faults: 0, SEC: 0, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 4 -------
+Min = 0, Max = 0.074054, Trial 4, Time: 5.582313
+Faults: 5, SEC: 5, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+-------------------------
+
+
+----- FTMPI Version -----
+Wrapper initialized with lambda = 0.000010
+----- Loading graph -----
+File: ./graphs/CA-GrQc.txt
+N = 5242, E=28980
+Graph Load time: 0.015090
+Opening solution: ./graphs/CA-GrQc_solution.txt
+
+----- BC Results -----
+Nodes = 4
+------- TRIAL 0 -------
+Min = 0, Max = 0.074054, Trial 0, Time: 2.850300
+Faults: 10, SEC: 10, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 1 -------
+Min = 0, Max = 0.074054, Trial 1, Time: 2.835914
+Faults: 10, SEC: 10, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 2 -------
+Min = 0, Max = 0.074054, Trial 2, Time: 2.831634
+Faults: 10, SEC: 10, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 3 -------
+Min = 0, Max = 0.074054, Trial 3, Time: 2.834504
+Faults: 10, SEC: 10, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 4 -------
+Min = 0, Max = 0.074054, Trial 4, Time: 2.833616
+Faults: 12, SEC: 12, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+-------------------------
+
+
+----- FTMPI Version -----
+Wrapper initialized with lambda = 0.000010
+----- Loading graph -----
+File: ./graphs/CA-GrQc.txt
+N = 5242, E=28980
+Graph Load time: 0.015229
+Opening solution: ./graphs/CA-GrQc_solution.txt
+
+----- BC Results -----
+Nodes = 8
+------- TRIAL 0 -------
+Min = 0, Max = 0.074054, Trial 0, Time: 1.441819
+Faults: 17, SEC: 17, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 1 -------
+Min = 0, Max = 0.074054, Trial 1, Time: 1.442032
+Faults: 29, SEC: 29, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 2 -------
+Min = 0, Max = 0.074054, Trial 2, Time: 1.439122
+Faults: 28, SEC: 28, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 3 -------
+Min = 0, Max = 0.074054, Trial 3, Time: 1.439855
+Faults: 27, SEC: 27, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 4 -------
+Min = 0, Max = 0.074054, Trial 4, Time: 1.440059
+Faults: 25, SEC: 25, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+-------------------------
+
+
+----- FTMPI Version -----
+Wrapper initialized with lambda = 0.000010
+----- Loading graph -----
+File: ./graphs/CA-GrQc.txt
+N = 5242, E=28980
+Graph Load time: 0.015084
+Opening solution: ./graphs/CA-GrQc_solution.txt
+
+----- BC Results -----
+Nodes = 16
+------- TRIAL 0 -------
+Min = 0, Max = 0.074054, Trial 0, Time: 0.771998
+Faults: 54, SEC: 54, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 1 -------
+Min = 0, Max = 0.074054, Trial 1, Time: 0.753464
+Faults: 61, SEC: 61, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 2 -------
+Min = 0, Max = 0.074054, Trial 2, Time: 0.752662
+Faults: 45, SEC: 45, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 3 -------
+Min = 0, Max = 0.074054, Trial 3, Time: 0.754862
+Faults: 57, SEC: 57, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 4 -------
+Min = 0, Max = 0.074054, Trial 4, Time: 0.754904
+Faults: 65, SEC: 65, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+-------------------------
+
+
+----- FTMPI Version -----
+Wrapper initialized with lambda = 0.000010
+----- Loading graph -----
+File: ./graphs/CA-GrQc.txt
+N = 5242, E=28980
+Graph Load time: 0.015455
+Opening solution: ./graphs/CA-GrQc_solution.txt
+
+----- BC Results -----
+Nodes = 32
+------- TRIAL 0 -------
+Min = 0, Max = 0.074054, Trial 0, Time: 0.476117
+Faults: 122, SEC: 122, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 1 -------
+Min = 0, Max = 0.074054, Trial 1, Time: 0.453099
+Faults: 98, SEC: 98, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 2 -------
+Min = 0, Max = 0.074054, Trial 2, Time: 0.451890
+Faults: 123, SEC: 123, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 3 -------
+Min = 0, Max = 0.074054, Trial 3, Time: 0.446871
+Faults: 107, SEC: 107, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 4 -------
+Min = 0, Max = 0.074054, Trial 4, Time: 0.441941
+Faults: 115, SEC: 115, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+-------------------------
+
+
+<><><> 1e-4 Error Rate <><><>
+----- FTMPI Version -----
+Wrapper initialized with lambda = 0.000100
+----- Loading graph -----
+File: ./graphs/CA-GrQc.txt
+N = 5242, E=28980
+Graph Load time: 0.015348
+Opening solution: ./graphs/CA-GrQc_solution.txt
+
+----- BC Results -----
+Nodes = 2
+------- TRIAL 0 -------
+Min = 0, Max = 0.074054, Trial 0, Time: 5.585541
+Faults: 30, SEC: 30, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 1 -------
+Min = 0, Max = 0.074054, Trial 1, Time: 5.592499
+Faults: 39, SEC: 39, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 2 -------
+Min = 0, Max = 0.074054, Trial 2, Time: 5.596118
+Faults: 41, SEC: 41, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 3 -------
+Min = 0, Max = 0.074054, Trial 3, Time: 5.592907
+Faults: 48, SEC: 48, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 4 -------
+Min = 0, Max = 0.074054, Trial 4, Time: 5.591071
+Faults: 35, SEC: 35, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+-------------------------
+
+
+----- FTMPI Version -----
+Wrapper initialized with lambda = 0.000100
+----- Loading graph -----
+File: ./graphs/CA-GrQc.txt
+N = 5242, E=28980
+Graph Load time: 0.015279
+Opening solution: ./graphs/CA-GrQc_solution.txt
+
+----- BC Results -----
+Nodes = 4
+------- TRIAL 0 -------
+Min = 0, Max = 0.074054, Trial 0, Time: 2.839969
+Faults: 118, SEC: 118, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 1 -------
+Min = 0, Max = 0.074054, Trial 1, Time: 2.847670
+Faults: 166, SEC: 120, DED: 1, Retransmissions: 1
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 2 -------
+Min = 0, Max = 0.074054, Trial 2, Time: 2.840340
+Faults: 112, SEC: 112, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 3 -------
+Min = 0, Max = 0.074054, Trial 3, Time: 2.849488
+Faults: 142, SEC: 107, DED: 1, Retransmissions: 1
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 4 -------
+Min = 0, Max = 0.074054, Trial 4, Time: 2.859352
+Faults: 170, SEC: 101, DED: 2, Retransmissions: 2
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+-------------------------
+
+
+----- FTMPI Version -----
+Wrapper initialized with lambda = 0.000100
+----- Loading graph -----
+File: ./graphs/CA-GrQc.txt
+N = 5242, E=28980
+Graph Load time: 0.014953
+Opening solution: ./graphs/CA-GrQc_solution.txt
+
+----- BC Results -----
+Nodes = 8
+------- TRIAL 0 -------
+Min = 0, Max = 0.074054, Trial 0, Time: 1.455068
+Faults: 303, SEC: 261, DED: 1, Retransmissions: 1
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 1 -------
+Min = 0, Max = 0.074054, Trial 1, Time: 1.437429
+Faults: 267, SEC: 267, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 2 -------
+Min = 0, Max = 0.074054, Trial 2, Time: 1.439301
+Faults: 251, SEC: 251, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 3 -------
+Min = 0, Max = 0.074054, Trial 3, Time: 1.437276
+Faults: 231, SEC: 231, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 4 -------
+Min = 0, Max = 0.074054, Trial 4, Time: 1.439945
+Faults: 259, SEC: 259, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+-------------------------
+
+
+----- FTMPI Version -----
+Wrapper initialized with lambda = 0.000100
+----- Loading graph -----
+File: ./graphs/CA-GrQc.txt
+N = 5242, E=28980
+Graph Load time: 0.015050
+Opening solution: ./graphs/CA-GrQc_solution.txt
+
+----- BC Results -----
+Nodes = 16
+------- TRIAL 0 -------
+Min = 0, Max = 0.074054, Trial 0, Time: 0.781329
+Faults: 596, SEC: 557, DED: 1, Retransmissions: 1
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 1 -------
+Min = 0, Max = 0.074054, Trial 1, Time: 0.797013
+Faults: 762, SEC: 573, DED: 6, Retransmissions: 5
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 2 -------
+Min = 0, Max = 0.074054, Trial 2, Time: 0.773190
+Faults: 640, SEC: 602, DED: 1, Retransmissions: 1
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 3 -------
+Min = 0, Max = 0.074054, Trial 3, Time: 0.766354
+Faults: 563, SEC: 563, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 4 -------
+Min = 0, Max = 0.074054, Trial 4, Time: 0.804074
+Faults: 748, SEC: 566, DED: 6, Retransmissions: 5
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+-------------------------
+
+
+----- FTMPI Version -----
+Wrapper initialized with lambda = 0.000100
+----- Loading graph -----
+File: ./graphs/CA-GrQc.txt
+N = 5242, E=28980
+Graph Load time: 0.015663
+Opening solution: ./graphs/CA-GrQc_solution.txt
+
+----- BC Results -----
+Nodes = 32
+------- TRIAL 0 -------
+Min = 0, Max = 0.074054, Trial 0, Time: 0.485002
+Faults: 1186, SEC: 1149, DED: 1, Retransmissions: 1
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 1 -------
+Min = 0, Max = 0.074054, Trial 1, Time: 0.494335
+Faults: 1330, SEC: 1148, DED: 5, Retransmissions: 5
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 2 -------
+Min = 0, Max = 0.074054, Trial 2, Time: 0.469042
+Faults: 1284, SEC: 1162, DED: 3, Retransmissions: 3
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 3 -------
+Min = 0, Max = 0.074054, Trial 3, Time: 0.458730
+Faults: 1218, SEC: 1190, DED: 1, Retransmissions: 1
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 4 -------
+Min = 0, Max = 0.074054, Trial 4, Time: 0.443809
+Faults: 1180, SEC: 1180, DED: 0, Retransmissions: 0
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+-------------------------
+
+
+<><><> 1e-3 Error Rate <><><>
+----- FTMPI Version -----
+Wrapper initialized with lambda = 0.001000
+----- Loading graph -----
+File: ./graphs/CA-GrQc.txt
+N = 5242, E=28980
+Graph Load time: 0.015271
+Opening solution: ./graphs/CA-GrQc_solution.txt
+
+----- BC Results -----
+Nodes = 2
+------- TRIAL 0 -------
+Min = 0, Max = 0.074054, Trial 0, Time: 5.581645
+Faults: 725, SEC: 329, DED: 10, Retransmissions: 1
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 1 -------
+Min = 0, Max = 0.074054, Trial 1, Time: 5.580811
+Faults: 746, SEC: 344, DED: 8, Retransmissions: 1
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 2 -------
+Min = 0, Max = 0.074054, Trial 2, Time: 5.581886
+Faults: 705, SEC: 319, DED: 8, Retransmissions: 1
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 3 -------
+Min = 0, Max = 0.074054, Trial 3, Time: 5.582105
+Faults: 788, SEC: 370, DED: 13, Retransmissions: 1
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 4 -------
+Min = 0, Max = 0.074054, Trial 4, Time: 5.584813
+Faults: 746, SEC: 359, DED: 16, Retransmissions: 1
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+-------------------------
+
+
+----- FTMPI Version -----
+Wrapper initialized with lambda = 0.001000
+----- Loading graph -----
+File: ./graphs/CA-GrQc.txt
+N = 5242, E=28980
+Graph Load time: 0.015383
+Opening solution: ./graphs/CA-GrQc_solution.txt
+
+----- BC Results -----
+Nodes = 4
+------- TRIAL 0 -------
+Min = 0, Max = 0.074054, Trial 0, Time: 2.876666
+Faults: 2295, SEC: 1113, DED: 43, Retransmissions: 3
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 1 -------
+Min = 0, Max = 0.074054, Trial 1, Time: 2.873779
+Faults: 2206, SEC: 1021, DED: 31, Retransmissions: 3
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 2 -------
+Min = 0, Max = 0.074054, Trial 2, Time: 2.874834
+Faults: 2217, SEC: 1055, DED: 34, Retransmissions: 3
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 3 -------
+Min = 0, Max = 0.074054, Trial 3, Time: 2.876111
+Faults: 2236, SEC: 1050, DED: 36, Retransmissions: 3
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 4 -------
+Min = 0, Max = 0.074054, Trial 4, Time: 2.867438
+Faults: 2253, SEC: 1059, DED: 40, Retransmissions: 3
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+-------------------------
+
+
+----- FTMPI Version -----
+Wrapper initialized with lambda = 0.001000
+----- Loading graph -----
+File: ./graphs/CA-GrQc.txt
+N = 5242, E=28980
+Graph Load time: 0.015134
+Opening solution: ./graphs/CA-GrQc_solution.txt
+
+----- BC Results -----
+Nodes = 8
+------- TRIAL 0 -------
+Min = 0, Max = 0.074054, Trial 0, Time: 1.500229
+Faults: 5306, SEC: 2433, DED: 97, Retransmissions: 7
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 1 -------
+Min = 0, Max = 0.074054, Trial 1, Time: 1.510918
+Faults: 5981, SEC: 2456, DED: 72, Retransmissions: 9
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 2 -------
+Min = 0, Max = 0.074054, Trial 2, Time: 1.493856
+Faults: 5211, SEC: 2443, DED: 95, Retransmissions: 7
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 3 -------
+Min = 0, Max = 0.074054, Trial 3, Time: 1.494757
+Faults: 5279, SEC: 2507, DED: 92, Retransmissions: 7
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 4 -------
+Min = 0, Max = 0.074054, Trial 4, Time: 1.500721
+Faults: 5667, SEC: 2487, DED: 67, Retransmissions: 8
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+-------------------------
+
+
+----- FTMPI Version -----
+Wrapper initialized with lambda = 0.001000
+----- Loading graph -----
+File: ./graphs/CA-GrQc.txt
+N = 5242, E=28980
+Graph Load time: 0.015164
+Opening solution: ./graphs/CA-GrQc_solution.txt
+
+----- BC Results -----
+Nodes = 16
+------- TRIAL 0 -------
+Min = 0, Max = 0.074054, Trial 0, Time: 0.882340
+Faults: 11103, SEC: 5187, DED: 161, Retransmissions: 15
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 1 -------
+Min = 0, Max = 0.074054, Trial 1, Time: 0.865379
+Faults: 11203, SEC: 5350, DED: 191, Retransmissions: 15
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 2 -------
+Min = -3.2472e-315, Max = 0.074054, Trial 2, Time: 0.868102
+Faults: 11155, SEC: 5256, DED: 178, Retransmissions: 15
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 3 -------
+Min = 0, Max = 0.074054, Trial 3, Time: 0.869854
+Faults: 11083, SEC: 5138, DED: 175, Retransmissions: 15
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 4 -------
+Min = 0, Max = 0.074054, Trial 4, Time: 0.869969
+Faults: 11423, SEC: 5363, DED: 192, Retransmissions: 15
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+-------------------------
+
+
+----- FTMPI Version -----
+Wrapper initialized with lambda = 0.001000
+----- Loading graph -----
+File: ./graphs/CA-GrQc.txt
+N = 5242, E=28980
+Graph Load time: 0.015442
+Opening solution: ./graphs/CA-GrQc_solution.txt
+
+----- BC Results -----
+Nodes = 32
+------- TRIAL 0 -------
+Min = 0, Max = 5.7385e+32, Trial 0, Time: 0.754151
+Faults: 25019, SEC: 11002, DED: 377, Retransmissions: 35
+Total errors: 1969, Avg diff: 0.044098, Max diff: 1.000000
+------- TRIAL 1 -------
+Min = -2.757e-277, Max = 1.1718e+72, Trial 1, Time: 0.712674
+Faults: 24580, SEC: 11119, DED: 387, Retransmissions: 34
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 2 -------
+Min = -1.0128e-316, Max = 1.9938e+38, Trial 2, Time: 0.691002
+Faults: 23518, SEC: 10774, DED: 365, Retransmissions: 32
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 3 -------
+Min = -7.9514e+187, Max = 4.1798e+09, Trial 3, Time: 0.678612
+Faults: 23386, SEC: 11104, DED: 376, Retransmissions: 31
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 4 -------
+Min = 0, Max = 0.074054, Trial 4, Time: 0.696907
+Faults: 23971, SEC: 11008, DED: 369, Retransmissions: 32
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+-------------------------
+
+
+<><><> 1e-2 Error Rate <><><>
+----- FTMPI Version -----
+Wrapper initialized with lambda = 0.010000
+----- Loading graph -----
+File: ./graphs/CA-GrQc.txt
+N = 5242, E=28980
+Graph Load time: 0.015191
+Opening solution: ./graphs/CA-GrQc_solution.txt
+
+----- BC Results -----
+Nodes = 2
+------- TRIAL 0 -------
+Min = -1.085e+111, Max = 3.6059e+166, Trial 0, Time: 5.613808
+Faults: 19102, SEC: 2268, DED: 891, Retransmissions: 4
+Total errors: 1970, Avg diff: 0.044077, Max diff: 1.000000
+------- TRIAL 1 -------
+Min = -0.0017931, Max = 4.0177e+79, Trial 1, Time: 5.618226
+Faults: 22685, SEC: 2277, DED: 847, Retransmissions: 5
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 2 -------
+Min = -2.5319e-317, Max = 3.2715e+155, Trial 2, Time: 5.615470
+Faults: 22835, SEC: 2341, DED: 899, Retransmissions: 5
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 3 -------
+Min = -6.0858e-05, Max = 6.7386e+262, Trial 3, Time: 5.609078
+Faults: 18742, SEC: 2297, DED: 834, Retransmissions: 4
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 4 -------
+Min = -0.0002562, Max = 1.9529e+147, Trial 4, Time: 5.627690
+Faults: 26389, SEC: 2308, DED: 869, Retransmissions: 6
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+-------------------------
+
+
+----- FTMPI Version -----
+Wrapper initialized with lambda = 0.010000
+----- Loading graph -----
+File: ./graphs/CA-GrQc.txt
+N = 5242, E=28980
+Graph Load time: 0.015333
+Opening solution: ./graphs/CA-GrQc_solution.txt
+
+----- BC Results -----
+Nodes = 4
+------- TRIAL 0 -------
+Min = -2.5298e+70, Max = 9.3804e+189, Trial 0, Time: 2.929248
+Faults: 56184, SEC: 6750, DED: 2623, Retransmissions: 12
+Total errors: 1969, Avg diff: 0.044074, Max diff: 1.000000
+------- TRIAL 1 -------
+Min = -1.9506e+151, Max = 4.291e+155, Trial 1, Time: 2.934948
+Faults: 60476, SEC: 6820, DED: 2671, Retransmissions: 13
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 2 -------
+Min = -1.0536e+150, Max = 1.433e+228, Trial 2, Time: 2.924500
+Faults: 56674, SEC: 6955, DED: 2604, Retransmissions: 12
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 3 -------
+Min = -8.7879e+147, Max = 6.6582e+185, Trial 3, Time: 2.912189
+Faults: 49391, SEC: 6804, DED: 2705, Retransmissions: 10
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 4 -------
+Min = -5.7526e+73, Max = 7.0975e+281, Trial 4, Time: 2.938548
+Faults: 60636, SEC: 6817, DED: 2673, Retransmissions: 13
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+-------------------------
+
+
+----- FTMPI Version -----
+Wrapper initialized with lambda = 0.010000
+----- Loading graph -----
+File: ./graphs/CA-GrQc.txt
+N = 5242, E=28980
+Graph Load time: 0.015060
+Opening solution: ./graphs/CA-GrQc_solution.txt
+
+----- BC Results -----
+Nodes = 8
+------- TRIAL 0 -------
+Min = -6.9664e+73, Max = 1.1763e+171, Trial 0, Time: 1.670064
+Faults: 135737, SEC: 15895, DED: 6244, Retransmissions: 29
+Total errors: 1969, Avg diff: 0.044075, Max diff: 1.000000
+------- TRIAL 1 -------
+Min = -5.2299e+71, Max = 2.4194e+151, Trial 1, Time: 1.673779
+Faults: 139350, SEC: 15883, DED: 6157, Retransmissions: 30
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 2 -------
+Min = -2.2613e+224, Max = 1.0102e+227, Trial 2, Time: 1.674859
+Faults: 139635, SEC: 15794, DED: 6228, Retransmissions: 30
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 3 -------
+Min = -9.6435e+35, Max = 2.466e+227, Trial 3, Time: 1.658864
+Faults: 131807, SEC: 15685, DED: 6166, Retransmissions: 28
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 4 -------
+Min = -1.8955e+151, Max = 2.1347e+227, Trial 4, Time: 1.657023
+Faults: 132352, SEC: 15798, DED: 6149, Retransmissions: 28
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+-------------------------
+
+
+----- FTMPI Version -----
+Wrapper initialized with lambda = 0.010000
+----- Loading graph -----
+File: ./graphs/CA-GrQc.txt
+N = 5242, E=28980
+Graph Load time: 0.015358
+Opening solution: ./graphs/CA-GrQc_solution.txt
+
+----- BC Results -----
+Nodes = 16
+------- TRIAL 0 -------
+Min = -1.2302e+148, Max = 2.8336e+227, Trial 0, Time: 1.264355
+Faults: 297885, SEC: 33912, DED: 13402, Retransmissions: 64
+Total errors: 1969, Avg diff: 0.044054, Max diff: 1.000000
+------- TRIAL 1 -------
+Min = -2.2613e+224, Max = 1.6261e+227, Trial 1, Time: 1.239852
+Faults: 289557, SEC: 33959, DED: 13282, Retransmissions: 62
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 2 -------
+Min = -1.4761e+150, Max = 1.8381e+284, Trial 2, Time: 1.253986
+Faults: 298293, SEC: 34042, DED: 13544, Retransmissions: 64
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 3 -------
+Min = -2.2613e+224, Max = 1.6746e+186, Trial 3, Time: 1.251889
+Faults: 298646, SEC: 34082, DED: 13378, Retransmissions: 64
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 4 -------
+Min = -8.3239e+91, Max = 3.3411e+227, Trial 4, Time: 1.260002
+Faults: 304282, SEC: 34274, DED: 13762, Retransmissions: 65
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+-------------------------
+
+
+----- FTMPI Version -----
+Wrapper initialized with lambda = 0.010000
+----- Loading graph -----
+File: ./graphs/CA-GrQc.txt
+N = 5242, E=28980
+Graph Load time: 0.015157
+Opening solution: ./graphs/CA-GrQc_solution.txt
+
+----- BC Results -----
+Nodes = 32
+------- TRIAL 0 -------
+Min = -5.3481e+150, Max = 1.177e+301, Trial 0, Time: 1.609825
+Faults: 649271, SEC: 70803, DED: 27217, Retransmissions: 141
+Total errors: 1969, Avg diff: 0.044099, Max diff: 1.000000
+------- TRIAL 1 -------
+Min = -2.0617e+150, Max = 5.6108e+300, Trial 1, Time: 1.563876
+Faults: 644780, SEC: 70403, DED: 27628, Retransmissions: 140
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 2 -------
+Min = -2.2613e+224, Max = 9.9452e+300, Trial 2, Time: 1.541196
+Faults: 633288, SEC: 70419, DED: 27579, Retransmissions: 137
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 3 -------
+Min = -1.4213e+151, Max = 1.1715e+301, Trial 3, Time: 1.514351
+Faults: 618587, SEC: 70577, DED: 27713, Retransmissions: 133
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+------- TRIAL 4 -------
+Min = -6.3651e+150, Max = 1.1058e+227, Trial 4, Time: 1.505520
+Faults: 611714, SEC: 70431, DED: 27490, Retransmissions: 131
+Total errors: 0, Avg diff: -nan, Max diff: 0.000000
+-------------------------
+
+
+==============================================================================
+                                JOB STATISTICS                                
+==============================================================================
+
+           JobId: 1239758
+      SubmitTime: 2022-12-14T01:54:32
+         EndTime: 2022-12-14T03:54:33
+         RunTime: 00:05:53
+            TRES: cpu=32,mem=62.50G,node=32,billing=32
+       Partition: mpi
+        NodeList: mpi-n[66-97]
+         Command: /ihome/ageorge/jdb193/ece2165/scripts/submit_bc_ft_sweep.slurm
+
+==============================================================================
+ For more information use the command:
+   - `sacct -M mpi -j 1239758 -S 2022-12-14T01:54:32 -E 2022-12-14T03:54:33`
+
+ To control the output of the above command:
+   - Add `--format=<field1,field2,etc>` with fields of interest
+   - See the list of all possible fields by running: `sacct --helpformat`
+==============================================================================
