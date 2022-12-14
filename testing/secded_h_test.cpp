@@ -68,7 +68,7 @@ int main(int argc, char **argv)
 		
 		//PHASE 3: TAKE IN MODIFIED DATA, CALCULATE SYNDROME AND DECIDE NEXT COURSE OF ACTION
 		
-		bool corrected = checkReceivedData(copy);
+		int correctedCount = checkReceivedData(copy);
 		
 		//check result of correction attempt
 		
@@ -77,7 +77,7 @@ int main(int argc, char **argv)
 		//corrected == true and numBitsModified == 1, meaning single bit error fixed
 		//corrected == false and numBitsModified == 2, meaning double bit error detected, cannot correct
 		//corrected == false and numBitsModified != 2, meaning we missed a correction
-		if(corrected && numBitsModified == 0)
+		if(correctedCount == 0 && numBitsModified == 0)
 		{
 			no_error_count++;
 			//also want to turn data back into a double and make sure it matches original input
@@ -87,7 +87,7 @@ int main(int argc, char **argv)
 				printf("NO MODIFICATIONS BUT TRANSLATED DATA DOES NOT MATCH ORIGINAL INPUT!\n");
 			}
 		}
-		else if(corrected && numBitsModified == 1)
+		else if(correctedCount == 1 && numBitsModified == 1)
 		{
 			se_corrections++;
 			//also want to turn data back into a double and make sure it matches original input
@@ -97,7 +97,7 @@ int main(int argc, char **argv)
 				printf("CORRECTED DATA DOES NOT MATCH ORIGINAL INPUT!\n");
 			}
 		}
-		else if (!corrected && numBitsModified == 2)
+		else if (correctedCount == 2 && numBitsModified == 2)
 		{
 			ded_count++;
 		}

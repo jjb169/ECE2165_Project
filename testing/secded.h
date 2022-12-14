@@ -13,9 +13,9 @@
 // 5) modify bit(s) within the byte array using "modifyBits(unsigned char codeWord[], int singleErrorChance, int doubleErrorChance)" or other function
 //    5.1) this function returns the number of bits modified (0, 1, or 2)
 // 6) transmit and receive data with MPI calls
-// 7) use the function bool "checkReceivedData(unsigned char receivedData[])" by passing in the received unsigned char array
+// 7) use the function "checkReceivedData(unsigned char receivedData[])" by passing in the received unsigned char array
 //    7.1) this will correct data if possible, or flag a double bit error (any fixes made are applied directly to the receivedData array)
-//    7.2) "true" is returned if data corrected or no error found, "false" returned if double error detected - needs retransmitted
+//    7.2) int returned denoting if: no error detected (return=0), 1 error fixed (return=1), or double error detected (return=2)
 // 8) turn data back into a double by using the "double charToDouble(unsigned char receivedData[])" method
 //    8.1) just pass in the corrected data from step 7, and it will return the data as a double
 // 9) might want to count what the error was and if it was fixed to display test data at the end, possible through return values of "modifyBits" and "checkReceivedData"
@@ -398,12 +398,12 @@ int modifyBits(unsigned char codeWord[], int singleErrorChance, int doubleErrorC
 //input:
 // 1) receivedData is the data from a transmission that may or may not be modified, in form of unsigned char array
 //output:
-// bool signifying whether the data is correct or could not be fixed
+// int denoting if: no error detected (0), 1 error fixed (1), or double error detected (2)
 // also directly fix the data array of received data
-bool checkReceivedData(unsigned char receivedData[])
+int checkReceivedData(unsigned char receivedData[])
 {	
 	//bool for if data has been fixed (or not needed fixed) or needs retransmitted (DED)
-	bool correctData = false;
+	int correctedCount = -1;
 	//calculate syndrome based on received data
 	unsigned char syndrome = calculateSyndrome(receivedData);
 	
@@ -411,29 +411,31 @@ bool checkReceivedData(unsigned char receivedData[])
 	if(syndrome != 0x00)
 	{
 		//correct bit if possible
-		correctData = secded_data(receivedData, syndrome);
+		bool fixedInfo = secded_data(receivedData, syndrome);
 		
 		//if it could not be corrected,double error has been detected
-		if(correctData)
+		if(fixedInfo)
 		{
 			//DATA SUCCESSFULLY FIXED :D
-			//dont really need to do anything else, bool already set to true for return
-			correctData = true;
+			//set the return value to 1, as the data has been fixed
+			correctedCount = 1;
 		}
 		else
 		{
 			//DED DETECTED, NEED TO RETRANSMIT DATA
-			correctData = false;
+			//set return value to 2, as DED has been encountered
+			correctedCount = 2;
 		}		
 	}
 	else
 	{
 		//NO ERROR DETECTED, DATA NEEDS NO MODIFICATION
-		correctData = true;
+		//make return value 0, as no errors encountered
+		correctedCount = 0;
 	}
 	
 	//return bool signifying if data is good or not
-	return correctData;
+	return correctedCount;
 }
 
 //simple method to retranslate data from unsigned char array back to a double
