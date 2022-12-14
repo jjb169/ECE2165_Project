@@ -1,3 +1,4 @@
+#include <cstring>
 #include <random>
 #include <vector>
 #include <sys/time.h>
@@ -5,6 +6,8 @@
 #include <mpi.h>
 
 #include "secded.h"
+
+#define MAIN_PE 0
 
 using namespace std;
 
@@ -40,15 +43,21 @@ namespace wrapper {
     ENG RNG::e;
 
     double lambda = 0;
+    static int world_rank = -1;
+    static int world_size = -1;
 
     /*
     initialize the random elements and set the bit error chance
     */
-    void wrapper_init(double bit_error_rate) {
+    void wrapper_init(double bit_error_rate, int rank, int size) {
         random_device rd;
         RNG::seed(rd());
 
         lambda = bit_error_rate;
+        world_rank = rank;
+        world_size = size;
+
+        if (world_rank == MAIN_PE) printf("Wrapper initialized with lambda = %f\n", lambda);
     }
 
     /*
@@ -65,7 +74,7 @@ namespace wrapper {
     obsolete
     */
     vector<int> get_flipped_bits(int length, int type_size) {
-        vector<int> flipped(fault_flip_count, 0);
+        vector<int> flipped(2, 0);
         RNG myrng;
         myrng.set_int(0, (length * type_size) - 1);
         for (int &i : flipped) {
@@ -82,34 +91,42 @@ namespace wrapper {
         total_size = type_size * count;
         // Allocate new send buffer that has an added byte for each double's check byte
         int new_size = count * (type_size + 1); // in bytes
-        unsigned char *sendbuf_ft = malloc(new_size);
-        double *buf = static_cast<double *>(sendbuf);
+        unsigned char *sendbuf_ft = (unsigned char *) malloc(new_size);
+        const double *buf = static_cast<const double *>(sendbuf);
 
-        // Loop through 8 bytes at a time
-        unsigned char *it = sendbuf_ft;
-        for (int i=0; i<count; i++) {
-            // Copy data to new buffer
-            memcpy(it, &buf[i], type_size);
-            // send to get check byte added
-            addCheckByte(buf[i], it);
+        int call_num = 0;
+        int passed = 0;
+        do {
+            // Loop through 8 bytes at a time
+            unsigned char *it = sendbuf_ft;
+            for (int i=0; i<count; i++) {
+                // Copy data to new buffer
+                memcpy(it, &buf[i], type_size);
+                // send to get check byte added
+                addCheckByte(buf[i], it);
 
-            // Loop through each byte for a fault/flip
-            for (int b=0; b < (type_size + 1); b++) {
-                // 8 bits per byte
-                for (int bit_idx=0; bit_idx < 8; bit_idx++) {
-                    if (check_fault()) {
-                        it[b] ^= (0x1<<bit_idx);
-                        printf("FAULT! Flipping Byte %d, Bit %d\n", b, bit_idx);
+                // Loop through each byte for a fault/flip
+                for (int b=0; b < (type_size + 1); b++) {
+                    // 8 bits per byte
+                    for (int bit_idx=0; bit_idx < 8; bit_idx++) {
+                        if (check_fault()) {
+                            it[b] ^= (0x1<<bit_idx);
+                            printf("FAULT! Node %d, Call %d, Chunk %d, Byte %d, Bit %d\n", world_rank, call_num, i, b, bit_idx);
+                        }
                     }
                 }
+
+                // Increment byte array to next entry
+                it += (type_size + 1);
             }
 
-            // Increment byte array to next entry
-            it += (type_size + 1);
-        }
+            // Call the api with the new array and size
+            MPI_Send(sendbuf_ft, new_size, MPI_UNSIGNED_CHAR, dest, tag, comm);
 
-        // Call the api with the new array and size
-        MPI_Send(sendbuf_ft, new_size, MPI_UNSIGNED_CHAR, dest, tag, comm);
+            // Check if successful or retransmission necessary
+            MPI_Recv(&passed, 1, MPI_INT, dest, tag, comm, MPI_STATUS_IGNORE);
+            call_num++;
+        } while (passed == 0);
 
         free(sendbuf_ft);
         return;
@@ -124,24 +141,45 @@ namespace wrapper {
         total_size = type_size * count;
         // Allocate new recv buffer that has an added byte for each double's check byte
         int new_size = count * (type_size + 1); // in bytes
-        unsigned char *recvbuf_ft = malloc(new_size);
+        unsigned char *recvbuf_ft = (unsigned char *) malloc(new_size);
         double *buf = static_cast<double *>(recvbuf);
 
-        // Call the api with the new array and size
-        MPI_Recv(recvbuf_ft, new_size, MPI_UNSIGNED_CHAR, source, tag, comm, status);
+        int call_num = 0;
+        vector<int> valid(count, 0);
+        int passed = 0; // 0 means request retransmission
+        do {
+            printf("MPI Call: From %d to %d Call %d\n", source, world_rank, call_num);
+            call_num++;
 
-        // Loop through each chunk and check validity
-        unsigned char *it = recvbuf_ft;
-        for (int i=0; i < count; i++) {
-            if (checkReceivedData(it)) {
-                // Data is good, set in true output
-                buf[i] = charToDouble(it);
-            } else {
-                printf("Uncorrectable error in Byte %d", i);
-                //TODO what happens now?
+            // Set passed to 1 then check for errors
+            passed = 1;
+
+            // Call the api with the new array and size
+            MPI_Recv(recvbuf_ft, new_size, MPI_UNSIGNED_CHAR, source, tag, comm, status);
+
+            // Loop through each chunk and check validity
+            unsigned char *it = recvbuf_ft;
+            for (int i=0; i < count; i++) {
+                // check if valid data already saved
+                if (valid[i] == 0) {
+                    if (checkReceivedData(it)) {
+                        // Data is good, set in true output
+                        buf[i] = charToDouble(it);
+                        valid[i] = 1;
+                    } else {
+                        printf("Uncorrectable error from Node %d, Chunk %d\n", source, i);
+                        buf[i] = 0;
+                        passed = 0; // retransmission needed
+                    }
+                }
+                
+                it += (type_size + 1);
             }
-            it += (type_size + 1);
-        }
+
+            // Return retransmission request to sender
+            MPI_Send(&passed, 1, MPI_INT, source, tag, comm);
+
+        } while (passed == 0);
 
         free(recvbuf_ft);
         return;
@@ -149,12 +187,30 @@ namespace wrapper {
 
     void FI_MPI_Reduce(void *sendbuf, void *recvbuf, int count, 
     MPI_Datatype datatype, MPI_Op op, int root, MPI_Comm comm) {
-        
-        
+        int type_size; // in bytes
+        MPI_Type_size(datatype, &type_size);
 
-        // Call the actual communication now
-        MPI_Reduce(sendbuf, recvbuf, count, datatype, op, root, comm);
+        if (world_rank == root) {
+            // Create temp buffer to hold results
+            double *tempbuf = (double *) malloc(type_size * count);
+            // Recast real result buffer to doubles
+            double *buf = static_cast<double *>(recvbuf);
 
+            for (int i=0; i<world_size; i++) {
+                if (i == world_rank)
+                    continue;
+                // Recieve data from node i
+                FI_MPI_Recv(tempbuf, count, datatype, i, 0, comm, MPI_STATUS_IGNORE);
+                // Add data to real buffer
+                for (int i=0; i<count; i++)
+                    buf[i] += tempbuf[i];
+            }
+            free(tempbuf);
+        } else {
+            FI_MPI_Send(sendbuf, count, datatype, MAIN_PE, 0, MPI_COMM_WORLD);
+        }
+
+        MPI_Barrier(MPI_COMM_WORLD);
         return;
     }
 }
