@@ -153,7 +153,7 @@ vector<double> determineBC(AdjList const &graph, int const N, int const data_sta
     }
 
     // implicit barrier at end
-    MPI_Reduce(bc_local.data(), bc.data(), N, MPI_DOUBLE, MPI_SUM, MAIN_PE, MPI_COMM_WORLD);
+    wrapper::FI_MPI_Reduce(bc_local.data(), bc.data(), N, MPI_DOUBLE, MPI_SUM, MAIN_PE, MPI_COMM_WORLD);
 
     // Only the main PE will normalize the data
     if (world_rank == MAIN_PE) {
@@ -263,8 +263,12 @@ int main(int argc, char* argv[]) {
         start = MPI_Wtime();
         bc = determineBC(graph, N, data_start, data_end);
         end = MPI_Wtime();
+        wrapper::combine_faults();
         if (world_rank == MAIN_PE) {
             printf("Trial %d, Time: %f\n", i, end - start);
+            int faults, sec, ded, retrans;
+            wrapper::wrapper_output(faults, sec, ded, retrans);
+            printf("Faults: %d, SEC: %d, DED: %d, Retransmissions: %d\n", faults, sec, ded, retrans);
             // ==================== //
             //    Compare Results   //
             // ==================== //
@@ -277,7 +281,7 @@ int main(int argc, char* argv[]) {
                     nodesOrdered[i.second] = i.first;
 
                 int error_count = 0;
-                double total_diff = 0;
+                double total_diff = 0, max_diff = 0;
                 int i = 0;
                 // Get each node's BC
                 while(getline(infile, line)) {
@@ -295,13 +299,15 @@ int main(int argc, char* argv[]) {
                         printf("Nodes in solution do not match current bc vector\n");
                         break;
                     } else if (abs(bc[i] - bc_val) >= COMP_TOLERANCE) {
+                        double bc_diff = abs(bc[i] - bc_val);
                         error_count++;
-                        total_diff += abs(bc[i] - bc_val);
+                        total_diff += bc_diff;
+                        if (bc_diff > max_diff) max_diff = bc_diff;
                         //printf("Erorr %d found: %f != %f\n", error_count, bc[i], bc_val);
                     }
                     i++;
                 }
-                printf("Total errors: %d, Avg diff: %f\n", error_count, (total_diff / error_count));
+                printf("Total errors: %d, Avg diff: %f, Max diff: %f\n", error_count, (total_diff / error_count), max_diff);
             #endif
         }
     }

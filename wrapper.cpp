@@ -47,6 +47,11 @@ namespace wrapper {
     static int world_rank = -1;
     static int world_size = -1;
 
+    static int total_faults = 0;
+    static int total_sec = 0;
+    static int total_ded = 0;
+    static int total_retrans = 0;
+
     /*
     initialize the random elements and set the bit error chance
     */
@@ -62,6 +67,31 @@ namespace wrapper {
     }
 
     /*
+    Reset the error counts, retransmission, etc
+    */
+    void wrapper_reset() {
+        total_faults = 0;
+        total_retrans = 0;
+        total_sec = 0;
+        total_ded = 0;
+    }
+
+    // Combines the total_fault count from every node
+    void combine_faults() {
+        int local_faults = total_faults;
+        //MPI_Reduce(&local_faults, &local_faults, 1, MPI_INT, MPI_SUM, MAIN_PE, MPI_COMM_WORLD);
+        total_faults = local_faults;
+    }
+
+    // Provides the Fault Injector runtime information
+    void wrapper_output(int &faults, int &sec, int &ded, int &retrans) {
+        faults = total_faults;
+        sec = total_sec;
+        ded = total_ded;
+        retrans = total_retrans;
+    }
+
+    /*
     Check if a bit error occurred
     */
     bool check_fault() {
@@ -69,20 +99,6 @@ namespace wrapper {
         double val = myrng.gen_double();
 
         return (val < lambda);
-    }
-
-    /*
-    obsolete
-    */
-    vector<int> get_flipped_bits(int length, int type_size) {
-        vector<int> flipped(2, 0);
-        RNG myrng;
-        myrng.set_int(0, (length * type_size) - 1);
-        for (int &i : flipped) {
-            i = myrng.gen_double(); 
-        }
-
-        return flipped;
     }
 
     void FI_MPI_Send(const void *sendbuf, int count, MPI_Datatype datatype, int dest, int tag, MPI_Comm comm) {
@@ -112,6 +128,7 @@ namespace wrapper {
                     for (int bit_idx=0; bit_idx < 8; bit_idx++) {
                         if (check_fault()) {
                             it[b] ^= (0x1<<bit_idx);
+                            total_faults++;
                             if (PRINT_OUT == 1) printf("FAULT! Node %d, Call %d, Chunk %d, Byte %d, Bit %d\n", world_rank, call_num, i, b, bit_idx);
                         }
                     }
@@ -163,11 +180,19 @@ namespace wrapper {
             for (int i=0; i < count; i++) {
                 // check if valid data already saved
                 if (valid[i] == 0) {
-                    if (checkReceivedData(it)) {
+                    int decode = checkReceivedData(it);
+                    if (decode == 0) {
                         // Data is good, set in true output
                         buf[i] = charToDouble(it);
                         valid[i] = 1;
+                    } else if (decode == 1) {
+                        // SEC occurred, still good
+                        total_sec++;
+                        buf[i] = charToDouble(it);
+                        valid[i] = 1;
                     } else {
+                        // DED occurred, not good
+                        total_ded++;
                         if (PRINT_OUT == 1) printf("Uncorrectable error from Node %d, Chunk %d\n", source, i);
                         buf[i] = 0;
                         passed = 0; // retransmission needed
@@ -182,6 +207,8 @@ namespace wrapper {
 
         } while (passed == 0);
 
+        total_retrans += (call_num - 1);
+
         free(recvbuf_ft);
         return;
     }
@@ -195,16 +222,21 @@ namespace wrapper {
             // Create temp buffer to hold results
             double *tempbuf = (double *) malloc(type_size * count);
             // Recast real result buffer to doubles
-            double *buf = static_cast<double *>(recvbuf);
+            double *out_buf = static_cast<double *>(recvbuf);
+            double *in_buf = static_cast<double *>(sendbuf);
 
             for (int i=0; i<world_size; i++) {
-                if (i == world_rank)
+                if (i == world_rank) {
+                    for (int i=0; i<count; i++)
+                        out_buf[i] += in_buf[i];
                     continue;
+                }
+
                 // Recieve data from node i
                 FI_MPI_Recv(tempbuf, count, datatype, i, 0, comm, MPI_STATUS_IGNORE);
                 // Add data to real buffer
                 for (int i=0; i<count; i++)
-                    buf[i] += tempbuf[i];
+                    out_buf[i] += tempbuf[i];
             }
             free(tempbuf);
         } else {
