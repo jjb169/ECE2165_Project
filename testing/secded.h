@@ -224,8 +224,8 @@ char calculateSyndrome(unsigned char data[])
 bool secded_data(unsigned char data[], unsigned char syndrome)
 {
 	//ints to store result before fixing
-	int byteError = 8;
-	int bitError = 0;
+	int byteError = -1;
+	int bitError = -1;
 	int bitNum = 0;
 	//bool for checking if a matching syndrome is found
 	bool syndromeMatch = false;

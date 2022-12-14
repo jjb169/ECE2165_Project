@@ -13,8 +13,13 @@
 #include <unistd.h>
 #include <mpi.h>
 
+#include "wrapper.cpp"
+
 #define SAVE_RESULTS 0
+#define COMPARE_RESULTS 1
 #define MAIN_PE 0
+
+#define COMP_TOLERANCE 0.000001
 
 using namespace std;
 
@@ -77,6 +82,7 @@ AdjList loadGraph(string filename, NodeTranslator &nodeList, int &N, int &E) {
 
     N = adjList.size();
     //cout << "count: " << count << " | N = " << N << endl;
+    infile.close();
     return adjList;
 }
 
@@ -147,7 +153,7 @@ vector<double> determineBC(AdjList const &graph, int const N, int const data_sta
     }
 
     // implicit barrier at end
-    MPI_Reduce(bc_local.data(), bc.data(), N, MPI_DOUBLE, MPI_SUM, MAIN_PE, MPI_COMM_WORLD);
+    wrapper::FI_MPI_Reduce(bc_local.data(), bc.data(), N, MPI_DOUBLE, MPI_SUM, MAIN_PE, MPI_COMM_WORLD);
 
     // Only the main PE will normalize the data
     if (world_rank == MAIN_PE) {
@@ -191,15 +197,27 @@ int main(int argc, char* argv[]) {
     // ==================== //
     //     Cmd line args    //
     // ==================== //
-	// #Trials, *graphname*
-	// ./bc_hybrid 5 small_example
+	// #Trials, *graphname*, lambda
+	// ./bc_hybrid 5 small_example 0.001
+    if (argc != 4) {
+        printf("Incorrect arguments.\nExample: ./bc_mpi 5 small_example 0.001");
+        return 1;
+    }
     int trials = atoi(argv[1]);
     string graphName(argv[2]);
+    double lambda = atof(argv[3]);
     string ifname = "./graphs/" + graphName + ".txt";
+
 
     // ==================== //
     //     Graph Loading    //
     // ==================== //
+    if (world_rank == MAIN_PE)
+        printf("----- FTMPI Version -----\n");
+
+    // Initialize wrapper RNG elements
+    wrapper::wrapper_init(lambda, world_rank, world_size);
+
     if (world_rank == MAIN_PE) {
         printf("----- Loading graph -----\n");
         printf("File: %s\n", ifname.c_str());
@@ -215,7 +233,13 @@ int main(int argc, char* argv[]) {
         printf("Graph Load time: %f\n", load_end - load_start);
     }
     //printGraph(graph, N);
-
+    #if COMPARE_RESULTS
+        string sol_fname = "./graphs/" + graphName + "_solution" ".txt";
+        ifstream infile(sol_fname);
+        if (world_rank == MAIN_PE)
+            printf("Opening solution: %s\n", sol_fname.c_str());
+    #endif
+                
     // ==================== //
     //   Load Distribution  //
     // ==================== //
@@ -239,18 +263,70 @@ int main(int argc, char* argv[]) {
     double start, end;
     vector<double> bc;
     for (int i = 0; i < trials; i++) {
+        if (world_rank == MAIN_PE) printf("------- TRIAL %d -------\n", i);
+
+        // Reset the wrapper fault values
+        wrapper::wrapper_reset();
         MPI_Barrier(MPI_COMM_WORLD); // Ensure all nodes start at the same time
-        if (world_rank == MAIN_PE) {
-            printf("Trial %d, ", i);
-            start = MPI_Wtime();
-        }
+
+        start = MPI_Wtime();
         bc = determineBC(graph, N, data_start, data_end);
+        end = MPI_Wtime();
+
+        int faults, local_faults, sec, ded, retrans;
+        // Get data from wrapper
+        wrapper::wrapper_output(local_faults, sec, ded, retrans);
+        // Combine total fault counts
+        MPI_Reduce(&local_faults, &faults, 1, MPI_INT, MPI_SUM, MAIN_PE, MPI_COMM_WORLD);
+
         if (world_rank == MAIN_PE) {
-            end = MPI_Wtime();
-            printf("Time: %f\n", end - start);
+            printf("Trial %d, Time: %f\n", i, end - start);
+            printf("Faults: %d, SEC: %d, DED: %d, Retransmissions: %d\n", faults, sec, ded, retrans);
+            // ==================== //
+            //    Compare Results   //
+            // ==================== //
+            #if COMPARE_RESULTS
+                string line;
+
+                // Reorder nodes to match solution
+                vector<int> nodesOrdered(N,0);
+                for (auto i : nodeList)
+                    nodesOrdered[i.second] = i.first;
+
+                int error_count = 0;
+                double total_diff = 0, max_diff = 0;
+                int i = 0;
+                // Get each node's BC
+                while(getline(infile, line)) {
+                    // Skip commented and non-digit lines
+                    if (ispunct(line.front()) || !isdigit(line.front()))
+                        continue;
+
+                    stringstream ss(line);
+                    int node;
+                    string buf;
+                    double bc_val;
+                    ss >> node >> buf >> bc_val;
+                    //printf("Node: %d, Betweenness: %f\n", node, bc_val);
+                    if (node != nodesOrdered[i]) {
+                        printf("Nodes in solution do not match current bc vector\n");
+                        break;
+                    } else if (abs(bc[i] - bc_val) >= COMP_TOLERANCE) {
+                        double bc_diff = abs(bc[i] - bc_val);
+                        error_count++;
+                        total_diff += bc_diff;
+                        if (bc_diff > max_diff) max_diff = bc_diff;
+                        //printf("Erorr %d found: %f != %f\n", error_count, bc[i], bc_val);
+                    }
+                    i++;
+                }
+                printf("Total errors: %d, Avg diff: %f, Max diff: %f\n", error_count, (total_diff / error_count), max_diff);
+            #endif
         }
     }
     //printArray(bc, N);
+
+    
 
     // ==================== //
     //     Save Results     //
@@ -281,6 +357,13 @@ int main(int argc, char* argv[]) {
             printf("Save time: %f\n", save_end - save_start);
         }
     #endif
+
+    #if COMPARE_RESULTS
+        infile.close();
+    #endif
+
+    if (world_rank == MAIN_PE)
+        printf("-------------------------\n\n\n");
 
     MPI_Finalize();
     return 0;
